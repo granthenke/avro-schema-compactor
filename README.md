@@ -77,18 +77,18 @@ How It Works
 Why are Avro schemas "large"?
 - The schema is serialized as a json string
 - Fields are resolved "by-name"
--- This is great for schema evolution but means each field name is in the schema
--- You can also ensure you schema is smaller by using short field names
--- Other formats use numeric ids to reduce the size
-Many fields that are not needed when reading the data are kept in the serialized json. All of the fields below are only used at write time:
--- doc, defaults, order, aliases (record or field), namespace (?)
+   - This is great for schema evolution but means each field name is in the schema
+   - You can also ensure you schema is smaller by using short field names
+   - Other formats use numeric ids to reduce the size
+- Many fields that are not needed when reading the data are kept in the serialized json. All of the fields below are only used at write time:
+   - doc, defaults, order, aliases (record or field), namespace (?)
 
 Why are these compacted Avro schemas smaller?
 - Removes fields that are not required at read time
 - Serializes in a versioned binary bit packed format
--- Stores types in 4 bits, since avro only has 14 types
--- Stores name/symbol characters in 6 bits, since avro only allows 64 characters ([A-Za-z0-9_])
--- Limits the number of characters, fields, etc to use smaller representations for their size
+   - Stores types in 4 bits, since avro only has 14 types
+   - Stores name/symbol characters in 6 bits, since avro only allows 64 characters ([A-Za-z0-9_])
+   - Limits the number of characters, fields, etc to use smaller representations for their size
 
 TODO
 ----
