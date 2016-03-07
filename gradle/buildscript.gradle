@@ -1,0 +1,11 @@
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
+dependencies {
+  classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+  classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+  classpath 'com.github.ben-manes:gradle-versions-plugin:0.12.0'
+  classpath "com.github.jengelman.gradle.plugins:shadow:1.2.3"
+}

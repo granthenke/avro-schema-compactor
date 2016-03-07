@@ -1,0 +1,21 @@
+ext {
+  versions = [:]
+  libs = [:]
+}
+
+versions += [
+  avro: "1.8.0",
+  bitBuffer: "1.5.1",
+  gradle: "2.10",
+  jUnit: "4.12",
+  logback: "1.1.6",
+  slf4j: "1.7.18",
+]
+
+libs += [
+  avro: "org.apache.avro:avro:$versions.avro",
+  bitBuffer: "net.magik6k:bitbuffer:$versions.bitBuffer",
+  jUnit: "junit:junit:$versions.jUnit",
+  logbackClassic: "ch.qos.logback:logback-classic:$versions.logback",
+  slf4jApi: "org.slf4j:slf4j-api:$versions.slf4j",
+]

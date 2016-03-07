@@ -1,0 +1,39 @@
+apply plugin: "java"
+apply plugin: 'com.github.johnrengelman.shadow'
+
+// Create a test jar
+task testJar(type: Jar, dependsOn: testClasses) {
+  classifier = 'tests'
+  from sourceSets.test.output
+}
+
+// Create a jar with the source code
+task sourcesJar(type: Jar, dependsOn: classes) {
+  from sourceSets.main.allSource
+  classifier "sources"
+  extension "jar"
+}
+
+task testSourcesJar(type:Jar, dependsOn: testJar) {
+  from sourceSets.test.allSource
+  classifier "test-sources"
+  extension "jar"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  from javadoc.destinationDir
+  classifier "javadoc"
+  extension "jar"
+}
+
+artifacts {
+  archives testJar
+  archives sourcesJar
+  archives testSourcesJar
+  archives javadocJar
+}
+
+// Create a shaded jar with all dependencies
+shadowJar {
+  exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}

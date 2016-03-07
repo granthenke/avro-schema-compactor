@@ -1,0 +1,32 @@
+buildscript { apply from: file('gradle/buildscript.gradle'), to: buildscript }
+
+apply from: "$rootDir/gradle/dependencies.gradle"
+apply from: "$rootDir/gradle/wrapper.gradle"
+apply from: "$rootDir/gradle/artifacts.gradle"
+apply from: "$rootDir/gradle/quality.gradle"
+
+apply plugin: "idea"
+apply plugin: "eclipse"
+
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
+dependencies {
+  compile libs.avro
+  compile libs.bitBuffer
+  compile libs.slf4jApi
+
+  runtime libs.logbackClassic
+
+  testCompile libs.jUnit
+}
+
+test {
+  maxParallelForks = Runtime.runtime.availableProcessors()
+  testLogging {
+    events "passed", "skipped", "failed"
+    exceptionFormat = 'full'
+  }
+}
